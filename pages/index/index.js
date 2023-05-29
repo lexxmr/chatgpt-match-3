@@ -129,6 +129,7 @@ Page({
       }
       // 取消选择
       board[prevRow][prevCol].selected = false;
+      board[row][col].selected = false
       this.setData({ board });
       this.setData({ prevClickedBlock: null });
     } else {
