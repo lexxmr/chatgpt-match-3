@@ -7,6 +7,9 @@ Page({
 
   onLoad: function () {
     this.initBoard();
+    setTimeout(() => {
+      this.checkAndRemoveBlocks();
+    }, 500);
   },
 
   initBoard: function () {
