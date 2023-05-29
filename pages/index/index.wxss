@@ -36,3 +36,45 @@
     background-color: yellow;
   }
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+.block {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #fff;
+}
+
+.highlight {
+  animation: highlightAnimation 0.5s alternate infinite;
+}
+
+@keyframes highlightAnimation {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    background-color: yellow;
+  }
+}
+
+.selected {
+  background-color: orange !important;
+}

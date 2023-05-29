@@ -3,7 +3,7 @@
     <block wx:for="{{board}}" wx:key="{{rowIndex}}" wx:for-index="rowIndex">
       <view class="row">
         <block wx:for="{{item}}" wx:key="{{rowIndex + '-' + colIndex}}" wx:for-index="colIndex">
-          <view class="block {{item.highlighted ? 'highlight' : ''}}" style="background-color: {{colors[item.colorIndex]}}" bindtap="handleBlockClick" data-row="{{rowIndex}}" data-col="{{colIndex}}">
+          <view class="block {{item.highlighted ? 'highlight' : ''}} {{item.selected ? 'selected' : ''}}" style="background-color: {{colors[item.colorIndex]}}" bindtap="handleBlockClick" data-row="{{rowIndex}}" data-col="{{colIndex}}">
           </view>
         </block>
       </view>

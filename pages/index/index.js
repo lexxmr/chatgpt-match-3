@@ -14,7 +14,7 @@ Page({
     for (let i = 0; i < 10; i++) {
       const row = [];
       for (let j = 0; j < 10; j++) {
-        row.push({ colorIndex: Math.floor(Math.random() * 4), highlighted: false });
+        row.push({ colorIndex: Math.floor(Math.random() * 4), highlighted: false, selected: false });
       }
       board.push(row);
     }
@@ -109,8 +109,9 @@ Page({
   },
 
   handleBlockClick: function (event) {
+    let { board } = this.data;
     const { row, col } = event.currentTarget.dataset;
-
+  
     if (this.data.prevClickedBlock) {
       const [prevRow, prevCol] = this.data.prevClickedBlock;
       // 判断是否相邻
@@ -118,9 +119,7 @@ Page({
         (Math.abs(prevRow - row) === 1 && prevCol === col) ||
         (Math.abs(prevCol - col) === 1 && prevRow === row)
       ) {
-        console.log(
-          `交换方块: (${prevRow}, ${prevCol}) 和 (${row}, ${col})`
-        ); // 输出交换方块的日志
+        console.log(`交换方块: (${prevRow}, ${prevCol}) 和 (${row}, ${col})`); // 输出交换方块的日志
         // 交换并检查
         this.swapBlocks(prevRow, prevCol, row, col);
         if (!this.checkAndRemoveBlocks()) {
@@ -128,9 +127,14 @@ Page({
           this.swapBlocks(prevRow, prevCol, row, col);
         }
       }
+      // 取消选择
+      board[prevRow][prevCol].selected = false;
+      this.setData({ board });
       this.setData({ prevClickedBlock: null });
     } else {
-      this.setData({ prevClickedBlock: [row, col] });
+      // 标记当前选择的方块
+      board[row][col].selected = true;
+      this.setData({ prevClickedBlock: [row, col], board });
     }
   },
 
